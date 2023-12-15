@@ -12,7 +12,7 @@ class Fields {
     #[MongoDB\Field(type: 'string')]
     private $cct_code_dept;
 
-    #[MongoDB\Field(type: 'int')]
+    #[MongoDB\Field(type: 'date')]
     private $date_application_visite;
 
     #[MongoDB\Field(type: 'int')]
@@ -42,7 +42,7 @@ class Fields {
     #[MongoDB\Field(type: 'int')]
     private $cat_vehicule_id;
 
-    #[MongoDB\Field(type: 'int')]
+    #[MongoDB\Field(type: 'date')]
     private $date_application_contre_visite;
 
     #[MongoDB\Field(type: 'int')]
@@ -80,11 +80,11 @@ class Fields {
         $this->cct_code_dept = $cctCodeDept;
     }
 
-    public function getDateApplicationVisite(): ?int {
+    public function getDateApplicationVisite(): ?\DateTime {
         return $this->date_application_visite;
     }
 
-    public function setDateApplicationVisite(?int $dateApplicationVisite): void {
+    public function setDateApplicationVisite(?\DateTime $dateApplicationVisite): void {
         $this->date_application_visite = $dateApplicationVisite;
     }
 
@@ -160,11 +160,11 @@ class Fields {
         $this->cat_vehicule_id = $catVehiculeId;
     }
 
-    public function getDateApplicationContreVisite(): ?int {
+    public function getDateApplicationContreVisite(): ?\DateTime {
         return $this->date_application_contre_visite;
     }
 
-    public function setDateApplicationContreVisite(?int $dateApplicationContreVisite): void {
+    public function setDateApplicationContreVisite(?\DateTime $dateApplicationContreVisite): void {
         $this->date_application_contre_visite = $dateApplicationContreVisite;
     }
 

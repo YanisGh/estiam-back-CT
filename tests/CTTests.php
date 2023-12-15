@@ -5,7 +5,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 
 class CTTests extends TestCase
 {
-    public function testFindByDMId(): void
+    public function testGetById(): void
     {
         // Create an instance of the class containing the method
         $ctObject = new CT(); 

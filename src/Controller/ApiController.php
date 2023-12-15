@@ -31,7 +31,7 @@ class ApiController extends AbstractController
         ]);
 
     }
-    //Erreur comme quoi le json est trop volumineux
+    //Erreur car JSON trop volumineux
     #[Route('/ctall', name: 'ct_all', methods:['GET'])]
     public function ctAll(): Response
     {
@@ -59,11 +59,7 @@ class ApiController extends AbstractController
     public function deleteById(DocumentManager $documentManager, $id): Response
     {
         // $id = '6574ceb62818e8fe4e36e189';
-        $collectionName = 'PrixCT'; 
-        $mongoClient = $documentManager->getClient();
-        $collection = $mongoClient->selectCollection('CentresVacinnations', $collectionName);
-
-        $CT = $collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
+        $CT = $this->documentManager->getRepository(CT::class)->find($id);
         if ($CT) {
             return $this->documentManager->remove($CT);
         } else {
