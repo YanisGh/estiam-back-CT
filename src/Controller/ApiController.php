@@ -25,14 +25,13 @@ class ApiController extends AbstractController
     public function index(): Response
     {
 
-        dd($this->documentManager);
+        // dd($this->documentManager);
         return $this->render('api/index.html.twig', [
         'controller_name' => 'ApiController',
         ]);
 
     }
-    //Fonctionnait mais erreur comme quoi le json est trop volumineux
-    //Maintenant retourne juste "error : not found" sans avoir rien changé
+    //Erreur comme quoi le json est trop volumineux
     #[Route('/ctall', name: 'ct_all', methods:['GET'])]
     public function ctAll(): Response
     {
@@ -43,31 +42,14 @@ class ApiController extends AbstractController
             return $this->json(["error" => " Not found"], 404);
         }
     }
-    //Retourne "error : not found"
+    //Fonctionne
     #[Route('/ct/{id}', name: 'ct', methods:['GET'])]
-    public function findById(DocumentManager $documentManager, $id): Response
+    public function getById($id): Response
     {
         //$id = '6574ceb62818e8fe4e36e189';
-        $CT = $documentManager->getRepository(CT::class)->find($id);
+        $CT = $this->documentManager->getRepository(CT::class)->find($id);
         if ($CT) {
             return $this->json($CT);
-        } else {
-            return $this->json(["error" => " Not found"], 404);
-        }
-    }
-
-    //Fonctionne
-    #[Route('/ctDM/{id}', name: 'ct_DM', methods:['GET'])]
-    public function findByDMId(DocumentManager $documentManager, $id): Response
-    {
-        // $id = '6574ceb62818e8fe4e36e189';
-        $collectionName = 'PrixCT'; 
-        $mongoClient = $documentManager->getClient();
-        $collection = $mongoClient->selectCollection('CentresVacinnations', $collectionName);
-
-        $CT = $collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
-        if ($CT) {
-            return $this->json($CT, 200);
         } else {
             return $this->json(["error" => " Not found"], 404);
         }
