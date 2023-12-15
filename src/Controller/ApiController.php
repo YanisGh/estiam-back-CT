@@ -67,7 +67,7 @@ class ApiController extends AbstractController
 
         $CT = $collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
         if ($CT) {
-            return $this->json($CT);
+            return $this->json($CT, 200);
         } else {
             return $this->json(["error" => " Not found"], 404);
         }
