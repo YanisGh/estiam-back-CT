@@ -8,15 +8,12 @@ class CTTests extends TestCase
     public function testFindByDMId(): void
     {
         // Create an instance of the class containing the method
-        $ctObject = new CT(); // Replace with your actual class name
+        $ctObject = new CT(); 
 
-        // Replace this with an actual ID that exists in your database
         $id = '6574ceb62818e8fe4e36e189';
 
-        // Replace $documentManager with your actual DocumentManager instance
-        $documentManager = DocumentManager::create(); // Replace with your actual DocumentManager instance
+        $documentManager = DocumentManager::create(); 
 
-        // Call the method
         $response = $ctObject->findByDMId($documentManager, $id);
 
         // Validate the response
